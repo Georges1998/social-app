@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1033094481680-7ool3h5hagfmdjg4fjc1k0olp0ilqfgg.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1033094481680-7ool3h5hagfmdjg4fjc1k0olp0ilqfgg</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1033094481680-s6s8qf6gbsbnjvbkl6aaji0uoi22o974.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCFBPX3irdZR8VG32IZafVsh9cLbDkzZh8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1033094481680</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.georgeKandalaft.richierich</string>
+	<key>PROJECT_ID</key>
+	<string>richierich-013</string>
+	<key>STORAGE_BUCKET</key>
+	<string>richierich-013.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1033094481680:ios:6355ca39b357a34671c795</string>
+	<key>DATABASE_URL</key>
+	<string>https://richierich-013.firebaseio.com</string>
+</dict>
+</plist>
