@@ -52,3 +52,6 @@ flutter:
      - family: Signatra
        fonts:
          - asset: assets/fonts/Signatra.ttf
+     - family: LuckiestGuy
+       fonts:
+         - asset: assets/fonts/LuckiestGuy-Regular.ttf

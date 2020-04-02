@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
           gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
-              colors: [Colors.teal, Colors.blue])),
+              colors: [Theme.of(context).accentColor, Colors.blue])),
               alignment: Alignment.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
         children: <Widget>[
           Text(
             "RichieRich",
-            style: TextStyle(fontSize: 80.0, color: Colors.white, fontFamily: 'Signatra'),
+            style: TextStyle(fontSize: 65.0, color: Colors.white, fontFamily: 'LuckiestGuy'),
           ),
           GestureDetector(
             onTap: login,
