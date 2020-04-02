@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_frontend/widgets/header.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return Text("Profile");
+    return Scaffold(appBar: header(isAppTitle: false, text: "Profile"),
+    body: Text("Profile"),);
   }
 }
