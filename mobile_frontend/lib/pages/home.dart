@@ -24,6 +24,7 @@ class _HomeState extends State<Home> {
     super.initState();
     pageController = PageController();
 
+    // --------------------> Login/Logout
     googleSignIn.onCurrentUserChanged.listen((account) {
       handleSignIn(account);
     }, onError: (err) {
@@ -50,18 +51,19 @@ class _HomeState extends State<Home> {
     }
   }
 
-  @override
-  void dispose() {
-    pageController.dispose();
-    super.dispose();
-  }
-
   login() {
     googleSignIn.signIn();
   }
 
   logout() {
     googleSignIn.signOut();
+  }
+  // Login/Logout <--------------------
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
   }
 
   onPageChanged(int pageIndex) {
@@ -70,10 +72,11 @@ class _HomeState extends State<Home> {
     });
   }
 
-  changePage(int pageIndex){
+  changePage(int pageIndex) {
     pageController.jumpToPage(pageIndex);
   }
 
+  // --------------------> AuthPage
   Widget buildAuthScreen() {
     return Scaffold(
       body: PageView(
@@ -89,20 +92,28 @@ class _HomeState extends State<Home> {
         physics: NeverScrollableScrollPhysics(),
       ),
       bottomNavigationBar: CupertinoTabBar(
+        backgroundColor: Color(0xfff5f5f5),
         currentIndex: pageIndex,
         onTap: changePage,
         activeColor: Theme.of(context).primaryColor,
+        inactiveColor: Colors.blueGrey,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.attach_money)),
           BottomNavigationBarItem(icon: Icon(Icons.notifications_active)),
-          BottomNavigationBarItem(icon: Icon(Icons.camera_alt, size: 35.0,)),
+          BottomNavigationBarItem(
+              icon: Icon(
+            Icons.camera_alt,
+            size: 40.0,
+          )),
           BottomNavigationBarItem(icon: Icon(Icons.search)),
           BottomNavigationBarItem(icon: Icon(Icons.account_circle)),
         ],
       ),
     );
   }
+  // AuthPage <--------------------
 
+  // --------------------> UnAuthPage
   Scaffold buildUnAuthScreen() {
     return Scaffold(
         body: Container(
@@ -137,6 +148,7 @@ class _HomeState extends State<Home> {
       ),
     ));
   }
+  // UnAuthPage <--------------------
 
   @override
   Widget build(BuildContext context) {
