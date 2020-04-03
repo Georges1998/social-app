@@ -73,7 +73,7 @@ class _HomeState extends State<Home> {
   }
 
   changePage(int pageIndex) {
-    pageController.animateToPage(pageIndex, duration: Duration(milliseconds: 300), curve: Curves.ease);
+    pageController.animateToPage(pageIndex, duration: Duration(milliseconds: 200), curve: Curves.ease);
   }
 
   // --------------------> AuthPage
