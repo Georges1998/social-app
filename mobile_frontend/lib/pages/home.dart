@@ -1,13 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mobile_frontend/pages/activity_feed.dart';
+import 'package:mobile_frontend/pages/create_account.dart';
 import 'package:mobile_frontend/pages/profile.dart';
 import 'package:mobile_frontend/pages/search.dart';
 import 'package:mobile_frontend/pages/timeline.dart';
 import 'package:mobile_frontend/pages/upload.dart';
 
 final googleSignIn = GoogleSignIn();
+final userRef = Firestore.instance.collection('users');
+final DateTime timestamp = DateTime.now();
 
 class Home extends StatefulWidget {
   @override
@@ -40,6 +44,7 @@ class _HomeState extends State<Home> {
 
   handleSignIn(GoogleSignInAccount account) {
     if (account != null) {
+      createUserInFireStore();
       setState(() {
         isAuth = true;
       });
@@ -59,6 +64,27 @@ class _HomeState extends State<Home> {
     googleSignIn.signOut();
   }
   // Login/Logout <--------------------
+
+  createUserInFireStore() async {
+    // 1. Check if user Id Already exists
+    final GoogleSignInAccount user = googleSignIn.currentUser;
+    final DocumentSnapshot doc = await userRef.document(user.id).get();
+    // 2. If it doesn't then take them to create account page
+    if (!doc.exists) {
+      final username = await Navigator.push(
+          context, MaterialPageRoute(builder: (context) => CreateAccount()));
+      // 3. get username from create account, use it to make new document
+      usersRef.document(user.id).setData({
+        "id": user.id,
+        "username": username,
+        "photoURL": user.photoUrl,
+        "email": user.email,
+        "displayName": user.displayName,
+        "bio": "",
+        "timestamp": timestamp
+      });
+    }
+  }
 
   @override
   void dispose() {
@@ -82,7 +108,11 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: PageView(
         children: <Widget>[
-          Timeline(),
+          //Timeline(),
+          RaisedButton(
+            child: Text("Logout"),
+            onPressed: logout,
+          ),
           ActivityFeed(),
           Upload(),
           Search(),
