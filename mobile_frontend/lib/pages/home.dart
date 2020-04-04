@@ -158,7 +158,7 @@ class _HomeState extends State<Home> {
           gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
-              colors: [Theme.of(context).accentColor, Colors.blue])),
+              colors: [Theme.of(context).primaryColor, Colors.blue])),
       alignment: Alignment.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

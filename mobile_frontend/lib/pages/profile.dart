@@ -9,7 +9,9 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: header(isAppTitle: false, text: "Profile"),
-    body: Text("Profile"),);
+    return Scaffold(
+      appBar: header(isAppTitle: false, text: "Profile"),
+      body: Center(child: Text("Profile")),
+    );
   }
 }
