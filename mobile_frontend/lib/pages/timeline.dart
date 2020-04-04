@@ -13,8 +13,31 @@ class Timeline extends StatefulWidget {
 class _TimelineState extends State<Timeline> {
   @override
   void initState() {
-    getAdmins();
+    deleteUser();
     super.initState();
+  }
+
+  createUser() async {
+    usersRef
+        .document("abcdef123")
+        .setData({"username": "Jeff", "postCount": 0, "isAdmin": false});
+  }
+
+  updateUser() async {
+    final doc = await usersRef.document("abcdef123").get();
+    if (doc.exists) {
+      doc.reference
+          .updateData({"username": "Jeff", "postCount": 0, "isAdmin": false});
+    }
+  }
+
+  deleteUser() async {
+    final doc = await usersRef.document("abcdef123").get();
+    if (doc.exists) {
+      doc.reference.delete();
+    }else{
+      print("Doc does not exist");
+    }
   }
 
   getUserById() async {
@@ -31,7 +54,10 @@ class _TimelineState extends State<Timeline> {
   }
 
   getAdmins() async {
-    QuerySnapshot snapshot = await usersRef.where("isAdmin", isEqualTo: true).where("postCount", isLessThan: 4).getDocuments();
+    QuerySnapshot snapshot = await usersRef
+        .where("isAdmin", isEqualTo: true)
+        .where("postCount", isLessThan: 4)
+        .getDocuments();
     snapshot.documents.forEach((DocumentSnapshot doc) {
       print(doc.data);
     });
@@ -41,6 +67,23 @@ class _TimelineState extends State<Timeline> {
   Widget build(context) {
     return Scaffold(
       appBar: header(isAppTitle: true, text: "RichieRich"),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: usersRef.snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return circularProgress();
+          } else {
+            final List<Text> children = snapshot.data.documents
+                .map((doc) => Text(doc['username']))
+                .toList();
+            return Container(
+              child: ListView(
+                children: children,
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 }
