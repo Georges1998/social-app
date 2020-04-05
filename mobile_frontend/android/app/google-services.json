@@ -1,0 +1,49 @@
+{
+    "project_info": {
+        "project_number": "1033094481680",
+        "firebase_url": "https://richierich-013.firebaseio.com",
+        "project_id": "richierich-013",
+        "storage_bucket": "richierich-013.appspot.com"
+    },
+    "client": [{
+        "client_info": {
+            "mobilesdk_app_id": "1:1033094481680:android:886b55f654e85c6671c795",
+            "android_client_info": {
+                "package_name": "com.georgeKandalaft.richierich"
+            }
+        },
+        "oauth_client": [{
+                "client_id": "1033094481680-nq8882s545vs0v1hqg8ju3eemsp14qp0.apps.googleusercontent.com",
+                "client_type": 1,
+                "android_info": {
+                    "package_name": "com.georgeKandalaft.richierich",
+                    "certificate_hash": "c37425244800bf27b2b63aa8d1b83ec80252b71a"
+                }
+            },
+            {
+                "client_id": "1033094481680-qsm1s6g5m3vamin3dt590vg6phebj1d0.apps.googleusercontent.com",
+                "client_type": 3
+            }
+        ],
+        "api_key": [{
+            "current_key": "AIzaSyDqIlUBcvvr-MHdYilICpVhkxNfSSJ0Ds8"
+        }],
+        "services": {
+            "appinvite_service": {
+                "other_platform_oauth_client": [{
+                        "client_id": "1033094481680-qsm1s6g5m3vamin3dt590vg6phebj1d0.apps.googleusercontent.com",
+                        "client_type": 3
+                    },
+                    {
+                        "client_id": "1033094481680-7ool3h5hagfmdjg4fjc1k0olp0ilqfgg.apps.googleusercontent.com",
+                        "client_type": 2,
+                        "ios_info": {
+                            "bundle_id": "com.georgeKandalaft.richierich"
+                        }
+                    }
+                ]
+            }
+        }
+    }],
+    "configuration_version": "1"
+}

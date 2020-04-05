@@ -7,6 +7,10 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'com.google.firebase:firebase-auth:19.3.0'
+        classpath 'com.google.firebase:firebase-firestore:21.4.2'
+        classpath 'com.google.firebase:firebase-storage:19.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
