@@ -18,7 +18,7 @@ class User{
   });
 
   // taking a doc snapshot and turn it into user
-  factory User.formDocument(DocumentSnapshot doc){
+  factory User.fromDocument(DocumentSnapshot doc){
     return User(
       id: doc['id'],
       email: doc['email'],

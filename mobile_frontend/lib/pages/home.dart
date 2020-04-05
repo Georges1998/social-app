@@ -87,7 +87,7 @@ class _HomeState extends State<Home> {
       });
       doc = await userRef.document(user.id).get();
     }
-    currentUser = User.formDocument(doc);
+    currentUser = User.fromDocument(doc);
     // print(currentUser);
     // print(currentUser.username);
   }
