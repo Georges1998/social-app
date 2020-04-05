@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mobile_frontend/models/user.dart';
 import 'package:mobile_frontend/pages/activity_feed.dart';
@@ -36,12 +37,19 @@ class _HomeState extends State<Home> {
     }, onError: (err) {
       print("Error sigining in: $err");
     });
-    // Reauthenticate users when app is open
-    googleSignIn.signInSilently(suppressErrors: false).then((account) {
-      handleSignIn(account);
-    }).catchError((err) {
-      print("Error sigining in: $err");
-    });
+    setUpGoogleSignIn();
+    // });
+  }
+
+  void setUpGoogleSignIn() async {
+    try {
+      final account = await googleSignIn.signInSilently();
+      print("Successfully signed in as ${account.displayName}.");
+    } on PlatformException catch (e) {
+      // User not signed in yet. Do something appropriate.
+      print("The user is not signed in yet. Asking to sign in.");
+      googleSignIn.signIn();
+    }
   }
 
   handleSignIn(GoogleSignInAccount account) {
