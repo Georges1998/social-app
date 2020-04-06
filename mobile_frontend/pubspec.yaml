@@ -25,7 +25,9 @@ dependencies:
   google_sign_in:
   cached_network_image:
   image_picker:
-  
+  path_provider:
+  uuid:
+  geolocator:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -34,15 +36,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -51,11 +50,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/google_signin_button.png
-  
+
   fonts:
-     - family: Signatra
-       fonts:
-         - asset: assets/fonts/Signatra.ttf
-     - family: LuckiestGuy
-       fonts:
-         - asset: assets/fonts/LuckiestGuy-Regular.ttf
+    - family: Signatra
+      fonts:
+        - asset: assets/fonts/Signatra.ttf
+    - family: LuckiestGuy
+      fonts:
+        - asset: assets/fonts/LuckiestGuy-Regular.ttf
