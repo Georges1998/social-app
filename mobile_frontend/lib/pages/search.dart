@@ -121,7 +121,7 @@ class UserResult extends StatelessWidget {
                 title: Text(
                   user.displayName,
                   style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+                      color: Theme.of(context).accentColor, fontWeight: FontWeight.bold),
                 ),
                 subtitle: Text(user.username),
                 leading: CircleAvatar(

@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
     }, onError: (err) {
       print("Error sigining in: $err");
     });
-    setUpGoogleSignIn();
+    //setUpGoogleSignIn();
     // });
   }
 
@@ -133,7 +133,7 @@ class _HomeState extends State<Home> {
           ActivityFeed(),
           Upload(currentUser: currentUser),
           Search(),
-          Profile(),
+          Profile(profileId: currentUser?.id),
         ],
         controller: pageController,
         onPageChanged: onPageChanged,
@@ -176,7 +176,7 @@ class _HomeState extends State<Home> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Text(
-            "RichieRich",
+            "Niara",
             style: TextStyle(
                 fontSize: 65.0, color: Colors.white, fontFamily: 'LuckiestGuy'),
           ),
