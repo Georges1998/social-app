@@ -16,7 +16,7 @@ class _SearchState extends State<Search> {
 
   handleSearch(String query) {
     Future<QuerySnapshot> users =
-        userRef.where('username', isGreaterThanOrEqualTo: query).getDocuments();
+        userRef.where('displayName', isGreaterThanOrEqualTo: query).getDocuments();
     setState(() {
       searchResultsFuture = users;
     });

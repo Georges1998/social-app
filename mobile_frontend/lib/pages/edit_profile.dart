@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import 'package:mobile_frontend/models/user.dart';
+import 'package:mobile_frontend/pages/home.dart';
 import 'package:mobile_frontend/pages/timeline.dart';
 import 'package:mobile_frontend/widgets/progress.dart';
 
@@ -19,6 +20,9 @@ class _EditProfileState extends State<EditProfile> {
   TextEditingController bioController = TextEditingController();
   bool isLoading = false;
   User user;
+  bool _displayNameValid = true;
+  bool _bioValid = true;
+  final  _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
     // TODO: implement initState
@@ -39,6 +43,27 @@ class _EditProfileState extends State<EditProfile> {
     });
   }
 
+  updateProfileData() {
+    setState(() {
+      displayNameController.text.trim().length < 3 ||
+              displayNameController.text.isEmpty
+          ? _displayNameValid = false
+          : _displayNameValid = true;
+      bioController.text.trim().length > 150
+          ? _bioValid = false
+          : _bioValid = true;
+    });
+
+    if (_displayNameValid && _bioValid) {
+      userRef.document(widget.currentUserId).updateData({
+        "displayName": displayNameController.text,
+        "bio": bioController.text
+      });
+      SnackBar snackbar = SnackBar(content: Text("Profile Updated!"),);
+      _scaffoldKey.currentState.showSnackBar(snackbar);
+    }
+  }
+
   buildDisplayName() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,6 +76,7 @@ class _EditProfileState extends State<EditProfile> {
           controller: displayNameController,
           decoration: InputDecoration(
             hintText: "Update Display Name",
+            errorText: _displayNameValid ? null : "Display name is too short."
           ),
         )
       ],
@@ -69,6 +95,7 @@ class _EditProfileState extends State<EditProfile> {
           controller: bioController,
           decoration: InputDecoration(
             hintText: "Update Bio",
+            errorText: _bioValid ? null : "Bio is too long."
           ),
         )
       ],
@@ -78,6 +105,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         title: Text(
@@ -120,7 +148,7 @@ class _EditProfileState extends State<EditProfile> {
                         ),
                       ),
                       RaisedButton(
-                        onPressed: () => print("update Profile Data"),
+                        onPressed: updateProfileData,
                         child: Text(
                           "Update Profile",
                           style: TextStyle(
@@ -132,12 +160,15 @@ class _EditProfileState extends State<EditProfile> {
                       Padding(
                         padding: EdgeInsets.all(16.0),
                         child: FlatButton.icon(
-                          onPressed: () => print("Logout"),
+                          onPressed: () => print("Cancel"),
                           icon: Icon(
                             Icons.cancel,
                             color: Colors.red,
                           ),
-                          label: Text("Logout", style: TextStyle(color: Colors.red, fontSize: 20),),
+                          label: Text(
+                            "Cancel",
+                            style: TextStyle(color: Colors.red, fontSize: 20),
+                          ),
                         ),
                       )
                     ],
