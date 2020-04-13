@@ -78,7 +78,7 @@ class _UploadState extends State<Upload> {
           Icon(
             Icons.camera_alt,
             size: 250.0,
-            color: Color(iconColor),
+            color: Colors.lightBlue,
           ),
           Padding(
             padding: EdgeInsets.only(top: 20),
@@ -93,7 +93,7 @@ class _UploadState extends State<Upload> {
                   "Share Image",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Color(iconColor),
+                      color: Colors.deepPurple,
                       fontWeight: FontWeight.bold,
                       fontFamily: "LuckiestGuy",
                       fontSize: 40),

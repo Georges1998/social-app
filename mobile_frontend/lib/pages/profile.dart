@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_frontend/models/user.dart';
 import 'package:mobile_frontend/pages/edit_profile.dart';
 import 'package:mobile_frontend/pages/timeline.dart';
 import 'package:mobile_frontend/widgets/header.dart';
+import 'package:mobile_frontend/widgets/post.dart';
 import 'package:mobile_frontend/widgets/progress.dart';
 import 'package:mobile_frontend/pages/home.dart';
 
@@ -17,6 +19,33 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   final currentUserId = currentUser?.id;
+  bool isLoading = false;
+  int postCount = 0;
+  List<Post> posts = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getProfilePost();
+  }
+
+  getProfilePost() async {
+    setState(() {
+      isLoading = true;
+    });
+    QuerySnapshot snapshot = await postRef
+        .document(widget.profileId)
+        .collection('userPosts')
+        .orderBy("timestamp", descending: true)
+        .getDocuments();
+
+    setState(() {
+      isLoading = false;
+      postCount = snapshot.documents.length;
+      posts = snapshot.documents.map((doc) => Post.fromDocument(doc)).toList();
+    });
+  }
+
   buildButton({String text, Function function}) {
     return Container(
       padding: EdgeInsets.only(top: 2.0),
@@ -155,13 +184,28 @@ class _ProfileState extends State<Profile> {
         });
   }
 
+  buildProfilePosts() {
+    if (isLoading) {
+      return circularProgress();
+    }
+    return Column(
+      children: posts,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: header(isAppTitle: false, text: "Profile"),
       body: ListView(
-        children: <Widget>[buildProfileHeader()],
+        children: <Widget>[
+          buildProfileHeader(),
+          Divider(
+            height: 0.0,
+          ),
+          buildProfilePosts()
+        ],
       ),
     );
   }
